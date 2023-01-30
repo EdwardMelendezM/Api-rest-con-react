@@ -5,10 +5,9 @@ import CrudTable from './CrudTable';
 const CrudApi = () => {
 
     const [db, setDb] = useState([]);
-    const [dataEdit, setDataEdit] = useState(null);
+    const [dataToEdit, setDataToEdit] = useState(null);
     let api = helpHttp();
     let url="http://localhost:5000/santos";
-
 
     useEffect(() => {
         api.get(url).then(res=>{
@@ -18,10 +17,8 @@ const CrudApi = () => {
         })
     }, []);
 
-
-
-    const createData = () => {
-        dataEdit.id = Data.now();
+    const createData = (data) => {
+        data.id = Date.now();
         setDb([...db, data])
     }
     const updateData = (data) => {
@@ -37,8 +34,16 @@ const CrudApi = () => {
         <div>
             <h2>Crud API</h2>
             <hr />
-            <CrudForm/>
-            <CrudTable data={db}/>
+            <CrudForm
+                createData={createData}
+                updateData={updateData}
+                dataToEdit={dataToEdit}
+                setDataToEdit={setDataToEdit}/>
+
+            <CrudTable
+                data={db}
+                setDataToEdit={setDataToEdit}
+                deleteData={deleteData} />
         </div>
         )
 }
