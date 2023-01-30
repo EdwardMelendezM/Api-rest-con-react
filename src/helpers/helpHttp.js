@@ -10,7 +10,6 @@ export const helpHttp = () => {
         options.body = JSON.stringify(options.body) || false;
         if (!options.body) delete options.body;
 
-        console.log(options);
         setTimeout(() => {
             controller.abort();
         }, 3000);
