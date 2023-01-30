@@ -16,7 +16,7 @@ export const helpHttp = () => {
         }, 3000);
 
 
-        return fecth(endpoint, options)
+        return fetch(endpoint, options)
             .then(res => res.ok ? res.json() : Promise.reject({
                 err: true,
                 status: res.status || "00",

@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { helpHttp } from '../helpers/helpHttp';
 const CrudApi = () => {
 
     const [db, setDb] = useState([]);
     const [dataEdit, setDataEdit] = useState(null);
     let api = helpHttp();
-    let url="";
+    let url="http://localhost:5000/santos";
+
+
+    useEffect(() => {
+        api.get(url).then(res=>{console.log(res)})
+    }, []);
+
+
 
     const createData = () => {
         dataEdit.id = Data.now();
