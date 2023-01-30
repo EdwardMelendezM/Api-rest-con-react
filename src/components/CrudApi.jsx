@@ -1,5 +1,7 @@
 import React, { useState ,useEffect} from 'react';
 import { helpHttp } from '../helpers/helpHttp';
+import CrudForm from './CrudForm';
+import CrudTable from './CrudTable';
 const CrudApi = () => {
 
     const [db, setDb] = useState([]);
@@ -9,7 +11,11 @@ const CrudApi = () => {
 
 
     useEffect(() => {
-        api.get(url).then(res=>{console.log(res)})
+        api.get(url).then(res=>{
+            if(!res.err){
+                setDb(res);
+            }
+        })
     }, []);
 
 
@@ -25,12 +31,14 @@ const CrudApi = () => {
     const deleteData = (data) => {
         //let newData = db.map
         console.log("Raa")
-    }
+    }   
 
     return (
         <div>
             <h2>Crud API</h2>
             <hr />
+            <CrudForm/>
+            <CrudTable data={db}/>
         </div>
         )
 }
