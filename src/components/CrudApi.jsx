@@ -25,25 +25,33 @@ const CrudApi = () => {
         let newData = db.map((el) => (el.id === data.id ? data : el));
         setDb(newData)
     }
-    const deleteData = (data) => {
-        //let newData = db.map
-        console.log("Raa")
+    const deleteData = (id) => {
+        let isDelete = window.confirm(`¿Estas seguro de eliminar el registro con id = ${id}?`)
+        if(isDelete){
+            let newData = db.filter((el)=>el.id !== data.id);
+            setDb(newData)
+        }else{
+            return;
+        }
     }   
 
     return (
         <div>
             <h2>Crud API</h2>
             <hr />
-            <CrudForm
+            <article className='grid-1-2'>
+                <CrudForm
                 createData={createData}
                 updateData={updateData}
                 dataToEdit={dataToEdit}
                 setDataToEdit={setDataToEdit}/>
 
-            <CrudTable
-                data={db}
-                setDataToEdit={setDataToEdit}
-                deleteData={deleteData} />
+                <CrudTable
+                    data={db}
+                    setDataToEdit={setDataToEdit}
+                    deleteData={deleteData} />
+            </article>
+            
         </div>
         )
 }
