@@ -28,8 +28,20 @@ const CrudApi = () => {
     }, []);
 
     const createData = (data) => {
-        data.id = Date.now();
-        setDb([...db, data])
+        let options ={
+            body:data,
+            headers:{
+                "content-type": "application/json"
+            }
+        }
+        api.post(url,options).then(res=>{
+            console.log(res)
+            if(!error){
+                setDb([...db,res])
+            }else{
+                setError(res)
+            }
+        });
     }
     const updateData = (data) => {
         let newData = db.map((el) => (el.id === data.id ? data : el));
