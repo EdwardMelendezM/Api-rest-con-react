@@ -1,7 +1,11 @@
-const SongDetails = () => {
+import SongArtist from "./SongArtist";
+import SongLyric from "./SongLyric";
+
+const SongDetails = ({ lyric, bio, search }) => {
   return (
     <div>
-      <h2>Detalles</h2>
+      <SongLyric />
+      <SongArtist />
     </div>
   );
 };

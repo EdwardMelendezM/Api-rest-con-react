@@ -1,11 +1,11 @@
 import CrudApi from "./components/CrudApi";
 import CrudApp from "./components/CrudApp";
-import SongSeach from "./components/SongSeach";
+import SongSearch from "./components/SongSearch";
 
 function App() {
   return (
     <>
-      <SongSeach />
+      <SongSearch />
       <CrudApi />
       <CrudApp />
     </>
