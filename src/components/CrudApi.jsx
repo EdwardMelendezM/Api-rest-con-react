@@ -68,8 +68,22 @@ const CrudApi = () => {
     const deleteData = (id) => {
         let isDelete = window.confirm(`¿Estas seguro de eliminar el registro con id = ${id}?`)
         if(isDelete){
-            let newData = db.filter((el)=>el.id !== data.id);
-            setDb(newData)
+            let endpoint=`${url}/${id}`;
+            let options ={
+                headers:{
+                    "content-type": "application/json"
+                }
+            }
+            
+            api.del(endpoint,options).then(res=>{
+                if(!res.err){
+                    let newData = db.filter((el)=>el.id !== id);
+                    setDb(newData)
+                }else{
+                    setError(res)
+                }
+            })
+            
         }else{
             return;
         }
