@@ -14,6 +14,12 @@ const SongForm = ({ handleSearch }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!form.artist || !form.song) {
+      alert("Datos incompletos");
+      return;
+    }
+    handleSearch(form);
+    setForm(initialForm);
   };
   return (
     <div>
