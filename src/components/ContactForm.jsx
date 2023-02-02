@@ -13,6 +13,11 @@ const validationsForm = (form) => {
   return errors;
 };
 
+let styles = {
+  fontWeight: "bold",
+  color: "#dc3545",
+};
+
 const ContactForm = () => {
   const {
     form,
@@ -36,6 +41,7 @@ const ContactForm = () => {
           value={form.name}
           required
         />
+        {errors.name && <p style={styles}>{errors.name}</p>}
         <input
           type="email"
           name="email"
@@ -45,6 +51,7 @@ const ContactForm = () => {
           value={form.email}
           required
         />
+        {errors.email && <p style={styles}>{errors.email}</p>}
         <input
           type="text"
           name="subject"
@@ -54,6 +61,7 @@ const ContactForm = () => {
           value={form.subject}
           required
         />
+        {errors.subject && <p style={styles}>{errors.subject}</p>}
         <textarea
           name="comments"
           cols="50"
@@ -64,6 +72,7 @@ const ContactForm = () => {
           value={form.comments}
           required
         ></textarea>
+        {errors.comments && <p style={styles}>{errors.comments}</p>}
         <input type="submit" value="Enviar" />
       </form>
     </div>
